@@ -1,0 +1,126 @@
+﻿@model IEnumerable<PropertyRentalManagementMVC.Models.Apartment>
+
+@{
+    ViewBag.Title = "Apartments";
+    if (Session["tenantId"] == null)       //dont show page if tenant not logIn in Web Site
+    {
+        Response.Redirect("~/Tenant/Index"); //redirect in home page
+    }
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Property Rental Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Log Out", "LogOut", "Tenant")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<h2>Apartments</h2>
+
+<h4>Tenant ID: @Session["tenantId"].ToString() </h4>
+<h4>Tenant First Name: @Session["tenantFirstName"].ToString() </h4>
+
+@using (Html.BeginForm("Apartment", "Tenant", FormMethod.Get))
+{
+    <p>
+        Number of rooms:@Html.DropDownList("NumberOfRooms", String.Empty)
+    </p>
+    <br>
+    <p>
+       
+        Status for appartment: @Html.TextBox("statusName")
+        <input type="submit" name="Search" value="Search">
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Building.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Building.StreetNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Building.StreetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartmentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Floor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Building.ManagerId)
+        </th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.StreetNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.StreetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Floor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.ManagerId)
+
+            </td>
+
+            <td>
+
+                @Html.ActionLink("Take an appointment", "Appointment", new { id = item.Building.ManagerId }) ||
+
+                @Html.ActionLink("Send messages", "Message", new { id = item.Building.ManagerId })
+            </td>
+        </tr>
+    }
+
+
+</table>
+
+
+

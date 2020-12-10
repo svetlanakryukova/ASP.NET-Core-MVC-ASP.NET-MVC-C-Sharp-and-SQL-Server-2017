@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Property Rental Management</h1>
+    <p class="lead">
+        Property Rental Management Web Site allows any potential tenant
+        to search an apartment that is suitable for his/her needs. The Web site also
+        helps the property owner and the property manager to facilitate the
+        management tasks of property rental.
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Owner", "Index", "Owner")</h2>
+        <p>
+            <img src="~/Content/1.jpg" alt="Image" width="300px"><br>
+        </p>
+        <p><a class="btn btn-default" @Html.ActionLink("Start work", "Index", "Owner")</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Manager", "Index", "Manager")</h2>
+        <p>
+            <img src="~/Content/2.jpg" alt="Image" width="300px"><br>
+        </p>
+        <p><a class="btn btn-default" @Html.ActionLink("Start work", "Index", "Manager")</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Tenant", "Index", "Tenant")</h2>
+        <p>
+            <img src="~/Content/3.jpg" alt="Image" width="280px"><br>
+        </p>
+        <p><a class="btn btn-default" @Html.ActionLink("Registration", "Index", "Tenant")</a></p>
+    </div>
+</div>
+
+

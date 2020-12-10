@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PropertyRentalManagementMVC.Models.Message>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Property Rental Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Log Out", "LogOut", "Manager")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<br>
+<h4>Hello manager: <strong> @TempData["managerId"] @Session["managerFirstName"].ToString() @Session["managerLastName"].ToString() </strong></h4>
+
+@Html.ActionLink("All apartments", "Index", "Apartments")
+<br>
+@Html.ActionLink("All buildings", "Index", "Buildings")
+<br>
+@Html.ActionLink("Schedule tenants' appointments", "Index", "Appointments")
+<br>
+@Html.ActionLink("Report event, track status", "Index", "Report")
+<br>
+<br>
+<h1>Messages</h1>
+
+<p>
+   
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MessageTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MessageDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tenant.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MessageDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenant.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MessageId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MessageId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MessageId }) |
+                @Html.ActionLink("Create response", "Create", new { id = item.MessageId })
+            </td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,102 @@
+﻿@model IEnumerable<PropertyRentalManagementMVC.Models.Apartment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Property Rental Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Log Out", "LogOut", "Manager")</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<br>
+<h4>Hello manager:<strong> @Session["managerFirstName"].ToString() @Session["managerLastName"].ToString() </strong></h4>
+
+@Html.ActionLink("All buildings", "Index", "Buildings")
+<br>
+@Html.ActionLink("Schedule tenants' appointments", "Index", "Appointments")
+<br>
+@Html.ActionLink("Respond to potential tenants' messages", "Index", "Messages")
+<br>
+@Html.ActionLink("Report event, track status", "Index", "Report")
+<br>
+<br>
+<h2>Apartments</h2>
+
+<p>
+    @Html.ActionLink("Create New apartment", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartmentNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Floor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfRooms)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Building.StreetName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tenant.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Floor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfRooms)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.StreetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenant.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ApartmentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ApartmentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ApartmentId })
+            </td>
+        </tr>
+    }
+
+</table>
+
